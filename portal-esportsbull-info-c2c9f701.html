@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 电竞牛</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f7f4eb;
+            font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+            color: #2e2b27;
+            line-height: 1.8;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+            background-color: #fefcf7;
+            padding: 3.5rem 2.8rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            border-left: 5px solid #c9b99a;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #302b24;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #7e7569;
+            margin-bottom: 2rem;
+            padding-left: 1.7rem;
+            border-bottom: 1px solid #e6dfd0;
+            padding-bottom: 0.8rem;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+            background: #f3efe6;
+            padding: 1.4rem 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            color: #3b352e;
+        }
+
+        .lead strong {
+            color: #7d5e3c;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            color: #4c443b;
+            border-bottom: 1px dashed #ddd6c7;
+            padding-bottom: 0.4rem;
+        }
+
+        p {
+            margin-bottom: 1.3rem;
+            text-indent: 0;
+        }
+
+        .quote-box {
+            background: #f2ede3;
+            border-left: 6px solid #b7a68b;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0;
+            border-radius: 0 10px 10px 0;
+            font-style: normal;
+            color: #4d453b;
+        }
+
+        .quote-box::before {
+            content: "📌 整理备注";
+            display: block;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: #9b8a73;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .info-item {
+            background: #f8f4ec;
+            padding: 1rem 1.5rem;
+            border-radius: 14px;
+            flex: 1 1 200px;
+            border: 1px solid #e5ddcf;
+        }
+
+        .info-item h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #6b5f4e;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            color: #4d453b;
+        }
+
+        .faq-note {
+            background: #ede7db;
+            padding: 1.3rem 1.6rem;
+            border-radius: 14px;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .faq-note summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #4f473c;
+            font-size: 1rem;
+        }
+
+        .faq-note p {
+            margin-top: 0.8rem;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .footer-link {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2dacb;
+            font-size: 1rem;
+        }
+
+        .footer-link a {
+            color: #6f5b3f;
+            text-decoration: none;
+            border-bottom: 1px dotted #b7a68b;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .footer-link a:hover {
+            border-bottom: 1px solid #5b4b35;
+            color: #4f3f2d;
+        }
+
+        .footer-meta {
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            color: #b0a494;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .page {
+                padding: 2rem 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+                padding-left: 0.8rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+                padding: 1rem 1.2rem;
+            }
+
+            .quote-box {
+                padding: 1rem 1.2rem;
+            }
+
+            .info-item {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>从资料整理到信息索引</h1>
+        <div class="subhead">以一份扎实的站点为起点 · 笔记</div>
+
+        <div class="lead">
+            <strong>电竞牛</strong> 是一个持续积累的赛事资料聚合点。它的意义不只在于结果展示，更在于把零散的对局记录、选手数据和赛程节点整理成可回溯的信息脉络——这对任何关注电竞生态的人来说，都是难得的参考基底。
+        </div>
+
+        <p>在整理大量赛事页面之后，你会发现一个规律：真正有价值的内容往往不是单个比分，而是长期稳定的索引结构。从小组赛到淘汰赛，从历史交锋到版本更迭，只有逻辑清晰的资料库才能让研究者或普通爱好者快速定位自己关心的片段。<a href="https://portal-esportsbull.com" style="color:#6f5b3f;text-decoration:underline dotted #b7a68b;">电竞牛</a> 恰好提供了这样一种结构化的土壤。</p>
+
+        <p>它不追求浮于表面的资讯堆叠，而是让每一条数据都嵌入合理的分类系统。你可以在其中找到不同赛区的横向对比，也可以沿着时间轴回溯某支队伍近两个赛季的起伏轨迹。这种索引式的整理方式，比单纯罗列新闻更贴近资料工作的本质。</p>
+
+        <div class="quote-box">
+            在信息过载的时代，整理本身就是一种筛选。对电竞观察者来说，一个能持续回溯的资料源，远比一百条孤立推送更有深度。
+        </div>
+
+        <p>刚开始接触这个站点时，我的第一反应是：它的导航逻辑偏向研究者思维，而不是普通资讯页的随意跳转。赛事主页、战队档案、版本数据……每一块都像图书馆的分类标签，彼此独立又关联。如果你习惯从宏观视角切入，或者需要为某个分析报告收集素材，这种设计会节省大量梳理时间。</p>
+
+        <div class="section-title">站点索引的几个特点</div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>按赛季归档</h3>
+                <p>每届大赛都会形成独立条目，保留从预选到决赛的完整对阵树，便于横向对比同一赛事的历届演变。</p>
+            </div>
+            <div class="info-item">
+                <h3>选手与队伍绑定</h3>
+                <p>选手页面会列出其效力过的所有队伍及对应时段，转会轨迹一目了然，适合做职业履历整理。</p>
+            </div>
+            <div class="info-item">
+                <h3>版本数据关联</h3>
+                <p>部分赛事页面会标注使用版本，方便研究者结合补丁变化分析战术倾向，而非只看胜负结果。</p>
+            </div>
+        </div>
+
+        <p>当然，任何资料库都有其侧重。如果你需要的只是最新的热搜战报，可能会觉得这里的更新节奏偏稳；但如果你正在做赛季复盘、选手数据统计或赛区生态分析，这种沉淀式的索引恰好是刚需。把每一次比赛当作一份文献来整理——这是我从 <a href="https://portal-esportsbull.com" style="color:#6f5b3f;text-decoration:underline dotted #b7a68b;">电竞牛</a> 身上读到的方法论。</p>
+
+        <details class="faq-note">
+            <summary>❓ 常见索引疑问</summary>
+            <p>问：站内数据是否覆盖所有主流电竞项目？<br>
+               答：目前以头部赛事为主，同时持续补充二三线联赛的归档记录，覆盖面在逐步扩大。</p>
+            <p>问：能否直接引用站内数据用于个人分析？<br>
+               答：可以，建议标注来源；索引本身为公开整理，但请尊重原始数据出处。</p>
+        </details>
+
+        <div class="footer-link">
+            <span>如果你对赛事资料的结构化整理感兴趣，可以从 </span>
+            <a href="https://portal-esportsbull.com">电竞牛</a>
+            <span> 的索引目录开始浏览。</span>
+            <div class="footer-meta">—— 一份持续的归档 · 资料方向笔记</div>
+        </div>
+    </div>
+</body>
+</html>
