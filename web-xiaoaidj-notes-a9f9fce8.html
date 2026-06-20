@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>小艾电竞 · 资料索引与场景导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e2a3e;
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      border: 1px solid #e6e9ed;
+    }
+
+    .brand {
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.3px;
+      color: #1e2a3e;
+    }
+
+    .brand a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3d4b62;
+      font-size: 0.95rem;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: #1e2a3e;
+      border-bottom-color: #b0bccf;
+    }
+
+    /* hero 区域 */
+    .hero {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 48px 36px 40px;
+      margin-bottom: 32px;
+      border: 1px solid #e1e5eb;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: 18px;
+      color: #141e2b;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #3e4c62;
+      max-width: 720px;
+      margin-bottom: 14px;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #eef1f6;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #2e3a4e;
+      border: 1px solid #dce1e8;
+      margin-top: 6px;
+    }
+
+    /* 核心介绍卡片（资料整理角度） */
+    .intro-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 32px 28px;
+      margin-bottom: 32px;
+      border: 1px solid #e1e5eb;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+    }
+
+    .intro-card h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      margin-bottom: 16px;
+      color: #17212e;
+    }
+
+    .intro-card p {
+      color: #314158;
+      margin-bottom: 14px;
+    }
+
+    .intro-card ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      margin-top: 8px;
+    }
+
+    .intro-card li {
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.95rem;
+      color: #2c3a50;
+    }
+
+    .intro-card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #6d7c93;
+    }
+
+    @media (max-width: 520px) {
+      .intro-card ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 三个场景模块 */
+    .scenes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 720px) {
+      .scenes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 26px 22px 24px;
+      border: 1px solid #e1e5eb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s, transform 0.1s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      transform: translateY(-2px);
+    }
+
+    .scene-card h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: #1b2535;
+      border-bottom: 1px solid #eef1f6;
+      padding-bottom: 8px;
+    }
+
+    .scene-card p {
+      font-size: 0.93rem;
+      color: #3d4d64;
+      margin-bottom: 10px;
+    }
+
+    .scene-card .meta {
+      font-size: 0.82rem;
+      color: #6f7f96;
+      border-top: 1px solid #f0f2f5;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    /* 常见说明 (FAQ 摘要) */
+    .faq-section {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 30px 32px 26px;
+      margin-bottom: 32px;
+      border: 1px solid #e1e5eb;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+    }
+
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #17212e;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #1e2a3e;
+      margin-bottom: 5px;
+      font-size: 0.98rem;
+    }
+
+    .faq-item p {
+      color: #3e4c62;
+      font-size: 0.93rem;
+      padding-left: 4px;
+    }
+
+    .faq-item:last-child {
+      margin-bottom: 6px;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      text-align: center;
+      padding: 20px 0 10px;
+      font-size: 0.84rem;
+      color: #6a7b91;
+      border-top: 1px solid #dce1e8;
+      margin-top: 12px;
+    }
+
+    .footer-note a {
+      color: #2c3a50;
+      text-decoration: none;
+      border-bottom: 1px dotted #b8c3d2;
+    }
+
+    .footer-note a:hover {
+      border-bottom-style: solid;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <div class="brand"><a href="https://web-xiaoaidj.com">小艾电竞</a></div>
+    <div class="nav-links">
+      <a href="#">资料库</a>
+      <a href="#">信息索引</a>
+      <a href="#">场景指南</a>
+      <a href="#">常见说明</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <header class="hero">
+    <h1>赛事资料 · 索引 · 场景导航</h1>
+    <p>
+      基于信息整理与结构化归档的思路，<a href="https://web-xiaoaidj.com" style="color: #1e2a3e; text-decoration: underline; text-underline-offset: 3px;">小艾电竞</a>围绕电竞赛事、数据记录与观赛需求，提供可检索、可交叉引用的内容框架。以下从资料密度与场景实用性出发，整理三个典型模块与常见说明。
+    </p>
+    <span class="tagline">归档方向 · 选手数据 · 赛事时间轴</span>
+  </header>
+
+  <!-- 核心介绍卡片 (从资料整理角度) -->
+  <section class="intro-card">
+    <h2>📋 资料整理与索引逻辑</h2>
+    <p>
+      本页面作为轻量导航站点，侧重信息聚合与结构呈现。内容来源包括公开赛事记录、选手生涯数据、赛事体系更迭等，经过分类与交叉验证后以卡片形式展示。索引原则包含以下维度：
+    </p>
+    <ul>
+      <li>赛事版本与赛季时间轴</li>
+      <li>选手出场及胜率统计</li>
+      <li>英雄/角色选用频率</li>
+      <li>战果记录与历史对阵</li>
+      <li>赛季规则变动摘要</li>
+      <li>赛区分布与晋级路径</li>
+    </ul>
+    <p style="margin-top: 10px; font-size: 0.92rem; color: #4b5c74;">
+      该索引框架侧重可维护性与扩展性，适用于常规信息查阅与对比分析。
+    </p>
+  </section>
+
+  <!-- 三个场景模块 -->
+  <div class="scenes-grid">
+    <div class="scene-card">
+      <h3>赛程回溯</h3>
+      <p>以赛季为单位的赛事时间线，包含小组赛、淘汰赛关键节点及版本更新对照。支持按赛区筛选，快速定位特定赛事周期内的场次与结果。</p>
+      <div class="meta">数据区间 · 近四个赛季</div>
+    </div>
+    <div class="scene-card">
+      <h3>选手数据卡片</h3>
+      <p>每位选手的核心数据：出场次数、常用角色、KDA区间、单场最高输出等。条目化展现，便于横向比较或生涯追踪。数据源经多平台校验。</p>
+      <div class="meta">覆盖选手 · 200+</div>
+    </div>
+    <div class="scene-card">
+      <h3>阵容与英雄池</h3>
+      <p>根据公开比赛记录整理阵容搭配倾向与英雄选用率。呈现热门组合、克制关系以及版本更替带来的选择偏移。适合教练组与深度爱好者参考。</p>
+      <div class="meta">版本跨度 · 7个补丁</div>
+    </div>
+  </div>
+
+  <!-- 常见说明 (FAQ 摘要) -->
+  <section class="faq-section">
+    <h2>❓ 常见说明</h2>
+    <div class="faq-item">
+      <strong>资料更新频率与时效性</strong>
+      <p>数据与索引内容依据公开赛事直播及赛后记录进行整理，通常在每轮比赛结束后24小时内完成同步。历史赛季数据按季度复核。</p>
+    </div>
+    <div class="faq-item">
+      <strong>信息交叉引用方式</strong>
+      <p>每个场景模块内标注了数据覆盖范围与版本信息。如需查证具体来源，可参考对应赛事官方记录。此处仅作索引摘要。</p>
+    </div>
+    <div class="faq-item">
+      <strong>使用建议</strong>
+      <p>建议优先浏览“资料整理与索引逻辑”模块以了解分类体系。场景卡片适用于针对性查阅，常见说明用于快速澄清边界。</p>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer-note">
+    <p>内容基于公开信息整理 · 侧重资料索引与场景导航 · <a href="https://web-xiaoaidj.com">小艾电竞</a></p>
+  </footer>
+</div>
+</body>
+</html>
