@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>优直播 · 知识库 · 主题索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fdf3e0 0%, #fbe1c6 45%, #f5cdab 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.6;
+      color: #2e241d;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 卡片体系 */
+    .card {
+      background: rgba(255, 252, 245, 0.85);
+      backdrop-filter: blur(2px);
+      border-radius: 32px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 12px 30px rgba(140, 90, 50, 0.10), 0 2px 6px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s;
+      margin-bottom: 2.4rem;
+    }
+
+    .card:hover {
+      box-shadow: 0 18px 40px rgba(130, 80, 40, 0.12), 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .card-soft {
+      background: rgba(255, 249, 240, 0.7);
+      backdrop-filter: blur(1px);
+      border: 1px solid rgba(235, 206, 170, 0.4);
+    }
+
+    /* 目录网格 */
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.6rem 0 0.8rem;
+    }
+
+    .dir-item {
+      background: #ffffffd9;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #6a4c34;
+      box-shadow: 0 2px 6px rgba(110, 70, 40, 0.04);
+      border: 1px solid #ecdccb;
+      transition: all 0.15s;
+      cursor: default;
+    }
+
+    .dir-item:hover {
+      background: #faead9;
+      border-color: #c4a885;
+      transform: translateY(-2px);
+    }
+
+    .dir-item span {
+      background: #f5dcc6;
+      border-radius: 30px;
+      padding: 0.1rem 0.6rem;
+      font-size: 0.75rem;
+      margin-left: 0.4rem;
+      color: #5d3c28;
+    }
+
+    /* 标题 */
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 480;
+      letter-spacing: -0.02em;
+      color: #402e20;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 360;
+      background: rgba(200, 160, 120, 0.15);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      color: #624b34;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 420;
+      color: #4d3826;
+      border-left: 6px solid #c7a27d;
+      padding-left: 1rem;
+      margin: 0 0 1.2rem 0;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #5a3f2b;
+      margin: 1.6rem 0 0.6rem 0;
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: #5f4937;
+      margin: 0.6rem 0 0.2rem 0;
+      font-weight: 360;
+      line-height: 1.5;
+      max-width: 80%;
+    }
+
+    /* 链接按钮感 */
+    a {
+      text-decoration: none;
+      color: #5f3f28;
+      border-bottom: 1px dotted #c8aa8a;
+      transition: all 0.12s;
+      font-weight: 420;
+    }
+
+    a:hover {
+      color: #2b1d14;
+      border-bottom: 2px solid #a57c58;
+      background: #f3e1cf60;
+      border-radius: 12px;
+      padding: 0.05rem 0.2rem;
+    }
+
+    .link-button {
+      display: inline-block;
+      background: #f5e1cf;
+      padding: 0.45rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 440;
+      border: 1px solid #dbbc9e;
+      color: #422f1f;
+      box-shadow: 0 2px 4px rgba(100, 60, 30, 0.04);
+      transition: all 0.2s;
+      border-bottom: none;
+    }
+
+    .link-button:hover {
+      background: #edd5bd;
+      border-color: #b38e6b;
+      transform: scale(1.01);
+      box-shadow: 0 6px 12px rgba(110, 70, 40, 0.08);
+      padding: 0.45rem 1.6rem;
+    }
+
+    .link-button:active {
+      transform: scale(0.97);
+    }
+
+    /* 提示区 / 引用 */
+    .tip-box {
+      background: #faf0e3;
+      border-radius: 28px;
+      padding: 1.6rem 2rem;
+      margin: 2rem 0 1rem;
+      border-left: 12px solid #bc9a78;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem 3rem;
+      margin: 1.4rem 0 0.4rem;
+    }
+
+    .info-col {
+      flex: 1 1 180px;
+      min-width: 130px;
+    }
+
+    .info-col p {
+      margin-bottom: 0.6rem;
+    }
+
+    .faq-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #3f2d1c;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: #524130;
+      margin-left: 1.2rem;
+      border-left: 3px solid #dbbd9f;
+      padding-left: 1rem;
+      font-size: 0.95rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dotted #dcc5ae;
+      margin: 2rem 0 1.2rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 660px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .card {
+        padding: 1.6rem 1.2rem;
+        border-radius: 24px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .hero-tagline {
+        max-width: 100%;
+        font-size: 1rem;
+      }
+      .dir-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.7rem;
+      }
+      .dir-item {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+      .tip-box {
+        padding: 1.2rem 1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .dir-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #705840;
+      text-align: center;
+      opacity: 0.7;
+      border-top: 1px solid #e1cdb7;
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- hero 区域  -->
+  <div class="card" style="padding-bottom: 1.8rem;">
+    <h1>
+      🎯 优直播
+      <small>知识库 · 主题索引</small>
+    </h1>
+    <div class="hero-tagline">
+      关于直播内容策划、互动设计与场景延伸的常识性记录，持续整理为可查阅的条目。
+    </div>
+    <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: center;">
+      <span style="background: #e7d2bc; border-radius: 40px; padding: 0.2rem 1rem; font-size: 0.85rem;">📂 7 个主题分类</span>
+      <span style="background: #e7d2bc; border-radius: 40px; padding: 0.2rem 1rem; font-size: 0.85rem;">📄 26 条笔记</span>
+      <span style="background: #e7d2bc; border-radius: 40px; padding: 0.2rem 1rem; font-size: 0.85rem;">🔄 定期更新</span>
+    </div>
+  </div>
+
+  <!-- 目录感布局：板块索引 -->
+  <div class="card card-soft">
+    <h2>📖 知识目录</h2>
+    <div class="dir-grid">
+      <div class="dir-item">🎬 内容筹备 <span>5</span></div>
+      <div class="dir-item">🎤 主播沟通 <span>4</span></div>
+      <div class="dir-item">📊 互动设计 <span>6</span></div>
+      <div class="dir-item">🎨 场景与视觉 <span>3</span></div>
+      <div class="dir-item">⚙️ 技术参考 <span>4</span></div>
+      <div class="dir-item">📈 数据思路 <span>2</span></div>
+      <div class="dir-item">🧩 案例摘录 <span>2</span></div>
+    </div>
+    <p style="margin-top: 1.2rem; font-size: 0.93rem; color: #4a3727;">
+      每个分类下包含若干独立条目，方便快速查阅。如果你正在了解与直播相关的方法与观察，
+      可以浏览这些基于实践与整理的记录。
+    </p>
+  </div>
+
+  <!-- 介绍区 + 特点 融合 -->
+  <div class="card">
+    <h2>📌 关于这个知识库</h2>
+    <p>
+      这里梳理了一些与直播场景相关的思路，包括内容规划、互动节奏、氛围营造以及技术细节。
+      每一条笔记都来自真实的项目记录或分析，不夸大效果，只陈述已知的经验。
+      如果你对如何更自然地组织一场直播、优化观众参与感或搭建基础流程感兴趣，
+      这些条目或许能提供一些参考。
+    </p>
+    <p style="margin-top: 1rem;">
+      知识库目前处于持续整理阶段，部分条目会随着理解加深而修订。
+      你可以把这里当作一个随身的工作手册，不必拘泥于顺序，按需翻阅即可。
+    </p>
+    
+    <h3>📋 内容特点</h3>
+    <div class="info-row">
+      <div class="info-col">
+        <p><strong>🔹 条目式</strong><br>每条独立，不依赖上下文，随查随用。</p>
+      </div>
+      <div class="info-col">
+        <p><strong>🔹 偏实操</strong><br>侧重流程、话术、设置等可直接参考的细节。</p>
+      </div>
+      <div class="info-col">
+        <p><strong>🔹 保持克制</strong><br>不标榜万能公式，只呈现有效的方法。</p>
+      </div>
+    </div>
+
+    <!-- 自然嵌入链接 —— 句子形式，不出现“进入、点击”等 -->
+    <p style="margin-top: 1.6rem;">
+      知识库的基础框架来自 <a href="https://pages-youzhibo.com">优直播</a> 项目中的积累，
+      如果你希望了解更具体的背景或查看完整条目，可以浏览在线版本。
+    </p>
+  </div>
+
+  <!-- 场景 / 适用方向 -->
+  <div class="card card-soft">
+    <h2>🧭 常见使用场景</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.2rem;">
+      <div style="flex: 1 1 160px; background: #fffcf5; border-radius: 28px; padding: 1rem 1.2rem; border: 1px solid #eedbcb;">
+        <strong>🗓️ 前期策划</strong><br>
+        <span style="font-size: 0.9rem;">确定主题、流程排期、内容分段。</span>
+      </div>
+      <div style="flex: 1 1 160px; background: #fffcf5; border-radius: 28px; padding: 1rem 1.2rem; border: 1px solid #eedbcb;">
+        <strong>🎯 现场执行</strong><br>
+        <span style="font-size: 0.9rem;">互动引导、镜头切换、突发应对。</span>
+      </div>
+      <div style="flex: 1 1 160px; background: #fffcf5; border-radius: 28px; padding: 1rem 1.2rem; border: 1px solid #eedbcb;">
+        <strong>📊 复盘优化</strong><br>
+        <span style="font-size: 0.9rem;">数据回顾、观众反馈、迭代清单。</span>
+      </div>
+    </div>
+    <p style="margin-top: 1.2rem; font-size: 0.95rem;">
+      无论是个人创作者还是小型团队，都可以把这些场景作为切入点，逐步建立自己的直播工作流。
+    </p>
+  </div>
+
+  <!-- 提示区 + 相关信息区  -->
+  <div class="tip-box">
+    <h2 style="border-left-color: #b58c6c; margin-bottom: 0.8rem;">💡 使用提示</h2>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li style="margin-bottom: 0.8rem;">✓ 推荐按「目录」跳转到感兴趣的分类，再细读条目。</li>
+      <li style="margin-bottom: 0.8rem;">✓ 部分条目包含扩展链接，可进一步阅读原始资料。</li>
+      <li style="margin-bottom: 0.4rem;">✓ 如果你有新的实践经验，欢迎通过项目反馈渠道贡献笔记。</li>
+    </ul>
+  </div>
+
+  <!-- FAQ 摘要 + 相关信息 -->
+  <div class="card">
+    <h2>❓ 常见问题摘要</h2>
+    <div class="faq-preview">
+      <div>
+        <div class="faq-q">▸ 知识库多久更新一次？</div>
+        <div class="faq-a">一般每月补充新条目，并修订已有内容中的过时信息。重大活动后可能会有快速更新。</div>
+      </div>
+      <div>
+        <div class="faq-q">▸ 条目中的方法适合所有平台吗？</div>
+        <div class="faq-a">大部分思路基于通用直播逻辑，但不同平台的观众习惯和功能限制略有差异，建议结合实际情况调整。</div>
+      </div>
+      <div>
+        <div class="faq-q">▸ 是否可以转载或引用内容？</div>
+        <div class="faq-a">可以注明出处后引用部分段落，但请保持上下文原意，不建议修改后作为自己的产出发布。</div>
+      </div>
+    </div>
+    <p style="margin-top: 1.2rem; font-size: 0.9rem; color: #5d4531;">
+      更多细节可在 <a href="https://pages-youzhibo.com" class="link-button" style="padding: 0.2rem 1.2rem; font-weight: 400;">优直播</a> 知识库中找到对应条目。
+    </p>
+  </div>
+
+  <!-- 相关信息区 -->
+  <div class="card card-soft" style="margin-bottom: 1.2rem;">
+    <h2>🔗 相关信息</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem 2rem;">
+      <div><span style="background: #f0ddcb; border-radius: 30px; padding: 0.1rem 0.8rem;">📁 项目归档</span> 2024–2025</div>
+      <div><span style="background: #f0ddcb; border-radius: 30px; padding: 0.1rem 0.8rem;">✍️ 内容协议</span> CC BY-NC 4.0</div>
+      <div><span style="background: #f0ddcb; border-radius: 30px; padding: 0.1rem 0.8rem;">📬 反馈</span> 通过项目页面提交</div>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: #4f3b2b;">
+      该知识库由 <a href="https://pages-youzhibo.com">优直播</a> 项目维护，旨在为直播从业者提供一份朴素、可靠的参考资料。
+    </p>
+  </div>
+
+  <footer>
+    内容基于实际经验整理 · 不构成专业建议 · 版本 α-0.4
+  </footer>
+</div>
+</body>
+</html>
